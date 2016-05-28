@@ -1,0 +1,2 @@
+class PowerUpsController < ApplicationController
+end

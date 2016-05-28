@@ -11,16 +11,99 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527181204) do
+ActiveRecord::Schema.define(version: 20160528042057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
+
+  create_table "group_members", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "group_members", ["group_id"], name: "index_group_members_on_group_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
+
+  create_table "keywords", force: :cascade do |t|
+    t.integer  "category_id"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "keywords", ["category_id"], name: "index_keywords_on_category_id", using: :btree
+
+  create_table "past_event_users", force: :cascade do |t|
+    t.integer  "past_event_id"
+    t.integer  "friend_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "past_event_users", ["past_event_id"], name: "index_past_event_users_on_past_event_id", using: :btree
+
+  create_table "past_events", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "url"
+    t.string   "location"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "past_events", ["user_id"], name: "index_past_events_on_user_id", using: :btree
+
+  create_table "power_ups", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "power_ups", ["user_id"], name: "index_power_ups_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "phone"
+    t.string   "lname"
+    t.string   "fname"
   end
 
+  add_foreign_key "friends", "users"
+  add_foreign_key "group_members", "groups"
+  add_foreign_key "groups", "users"
+  add_foreign_key "keywords", "categories"
+  add_foreign_key "past_event_users", "past_events"
+  add_foreign_key "past_events", "users"
+  add_foreign_key "power_ups", "users"
 end

@@ -1,0 +1,2 @@
+class PastEventsController < ApplicationController
+end

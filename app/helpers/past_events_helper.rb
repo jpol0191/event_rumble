@@ -1,0 +1,2 @@
+module PastEventsHelper
+end

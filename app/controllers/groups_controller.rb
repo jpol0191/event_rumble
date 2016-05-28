@@ -1,2 +1,27 @@
 class GroupsController < ApplicationController
+
+	def create 
+		@group=Group.new(group_params)
+		if @group.save
+			#continue one to next page
+		else 
+			#handle errors
+		end 
+	end
+
+	def update 
+		@group=Group.find(params[:id])
+		@group.update(group_params)
+	end
+
+	def destroy 
+		@group=Group.find(params[:id])
+		@group.destroy
+	end
+
+	private 
+
+	def group_params
+		params.require(:group).permit(:user_id, :name)
+	end
 end

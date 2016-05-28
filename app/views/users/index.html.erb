@@ -1,2 +1,14 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
+
+
+<!-- login form -->
+<%= form_for @user do |f|%>
+	<%= f.email_field :email, placeholder: "Email" %> 
+	<%= f.email_field :email_confirmation, placeholder: "Email confirmation" %>
+	<%= f.text_field :fname, placeholder: "First Name" %> 
+	<%= f.text_field :lname, placeholder: "Last Name" %> 
+	<%= f.password_field :password, placeholder: "Password" %>
+	<%= f.password_field :password_confirmation , placeholder: "Re-Type Password" %>
+	<%= f.telephone_field :phone %>
+<% end %> 

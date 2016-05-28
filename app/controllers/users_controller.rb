@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+  	@user=User.new
   	@users=User.all
   end
 
@@ -16,9 +17,10 @@ class UsersController < ApplicationController
   	@user=User.find(params[:id])
   	@user.update(user_params)
   end
-  # epic strong params, son! why only lname?
+  
   private
+
   def user_params
-  	params.require(:user).include(:email,:password,:phone,:fname,:lname)
+  	params.require(:user).permit(:email,:password,:phone,:fname,:lname)
   end
 end

@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  		#continue to next page
+  		redirect_to :back
   	else
-  		#display errors
+  		redirect_to :back
   	end
   end
 

@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 	def create 
 		@group=Group.new(group_params)
 		if @group.save
-			#continue one to next page
+			redirect_to :back
 		else 
 			#handle errors
 		end 

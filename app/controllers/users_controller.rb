@@ -1,16 +1,21 @@
 class UsersController < ApplicationController
   def index
-  	@user=User.new
   	@users=User.all
+    @user=User.new
   end
 
   def create
-  	@user = User.new(user_params)
-  	if @user.save
-  		#continue to next page
-  	else
-  		#display errors
-  	end
+    @user = User.new(user_params)
+      if @user.save
+        redirect_to root_path
+      else
+        #display errors
+      end
+  end
+  def show
+     @user = User.find(params[:id])
+     @group=Group.new
+     @groups = Group.where(user_id: params[:id])
   end
 
   def destroy

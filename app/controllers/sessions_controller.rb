@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
 	def create 
-		user = User.find_by(username: session_params[:username]) 
+		user = User.find_by(email: session_params[:email]) 
   	if user && user.authenticate(session_params[:password])
   		session[:user_id] = user.id
   		redirect_to :back #Need to change later
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	session.clear
-  	redirect_to root_path
+  	redirect_to :back
   end
 
   private

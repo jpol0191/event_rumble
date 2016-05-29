@@ -1,8 +1,13 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
+<% if current_user %>
+	<h4>User signed in</h4>
+	<%= current_user.email %>
+	<%= button_to("Log out", logout_path, method: :delete)%>
+<% end %>
 
-
-<!-- login form -->
+<!-- Signup form -->
+<h3>Sign up</h3>
 <%= form_for @user do |f|%>
 	<%= f.email_field :email, placeholder: "Email" %> 
 	<%= f.email_field :email_confirmation, placeholder: "Email confirmation" %>
@@ -11,4 +16,18 @@
 	<%= f.password_field :password, placeholder: "Password" %>
 	<%= f.password_field :password_confirmation , placeholder: "Re-Type Password" %>
 	<%= f.telephone_field :phone %>
+	<%= f.submit value: "Sign up" %>
 <% end %> 
+
+<!-- Sign in form -->
+<h3>Sign in</h3>
+<%= form_for(:session, url: login_path) do |f| %>
+	<%= f.email_field :email , placeholder: "Email" %>
+	<%= f.password_field :password, placeholder: "Password" %>
+	<%= f.submit value: "Sign in" %>
+<% end 	%>
+
+
+<% @users.each do |user| %>
+	<%= user.email %> <br>
+<% end %>

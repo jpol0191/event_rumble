@@ -12,3 +12,8 @@
 	<%= f.password_field :password_confirmation , placeholder: "Re-Type Password" %>
 	<%= f.telephone_field :phone %>
 <% end %> 
+
+
+<% @users.each do |user| %>
+	<%= user.email %> <br>
+<% end %>

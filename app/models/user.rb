@@ -17,9 +17,10 @@ class User < ActiveRecord::Base
 	# ============================================
 
 	# ============ Database relations ============ 
-	has_many :friends
-	has_many :groups
-	has_many :past_events
+	has_many :friends, dependent: :destroy
+	has_many :groups, dependent: :destroy
+	has_many :past_events, dependent: :destroy
+	has_many :power_ups, dependent: :destroy
 	# ============================================
 
 end

@@ -17,14 +17,31 @@
 
 
 $(document).ready(function(){
-	$('h3').html($('#group_fname').val());
 		var array =[]
+		var i = 0;
+	$('.form').hide();
+	$('.create-group').click(function(){
+		$('.form').show();
+		$('.create-group').hide();
+	});
 	$('.add-friend').click(function(){
 		// find a way to update value on the hidden field!
 		var invited =  $('select').closest('select').find('option:selected').val();
 		array.push(invited)
-		$('#group_fname').val($('#group_fname').val() +'<br>'+ invited);
+		$("#friends option[value='" + invited + "']").remove();
+		if(array[array.length - 1] === undefined || invited == ''){
+			array.pop();
+			$('select').hide();
+			$('.add-friend').hide();
+		}
+		$('h3').html(array.join(', '))
 		console.log(array)
-		$('h3').html($('#group_fname').val())
+		// set value to be the current selected value
+    arrayGlobal = jQuery("option:selected");
+	});
+
+	$('.clear-friend').click(function(){
+		array =[];
+		$('h3').html('')
 	})
 })

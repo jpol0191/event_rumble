@@ -30,13 +30,15 @@
 	 <h2>invite friends</h2>
 	 <!-- drop down of list of friend to add in the group -->
 	 <!-- it has to be outside of the from  -->
-   <select name="user_id">
+   <select name="friends" id="friends">
     <%= @users.each do |user| %>
       <option value="<%= user.fname %>"><%= user.fname %></option>
     <% end %>
 	  </select>
 	  <!-- add friend in the hidden field -->
 	  <button class="add-friend">add</button>
+	  <!-- clear friends invited -->
+	  <button class="clear-friend">clear</button>
 		<%= form_for @group do |f|%>
 			<h3></h3>
 			<h2>name of your group</h2>
@@ -47,7 +49,7 @@
 		  <br>
 		  <%= f.hidden_field :fname, value: current_user.fname %>
 		  <br>
-			<%= f.submit value: "Create" %>
+			<%= f.submit value: "Create", :class => 'submit-group' %>
 		<% end %> 
 	</div>
 	<br>

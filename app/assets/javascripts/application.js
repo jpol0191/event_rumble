@@ -17,8 +17,10 @@
 
 
 $(document).ready(function(){
+	$('h3').html($('#group_fname').val());
 	$('.add-friend').click(function(){
 		// find a way to update value on the hidden field!
-		$('option').attr('value', $(group_fname).attr() + $('option').val())
+		$('#group_fname').val($('#group_fname').val() +'<br>'+ $('select').closest('select').find('option:selected').val());
+		$('h3').html($('#group_fname').val())
 	})
 })

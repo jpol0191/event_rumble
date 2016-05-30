@@ -22,5 +22,6 @@ class PastEventUsersController < ApplicationController
 	private 
 
 	def past_event_user_params
-		params.require(:past_event_user).permit(:past_event_id, :friend_id, )
+		params.require(:past_event_user).permit(:past_event_id, :friend_id )
+	end
 end

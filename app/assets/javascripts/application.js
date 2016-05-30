@@ -29,7 +29,7 @@ $(document).ready(function(){
 		var invited =  $('select').closest('select').find('option:selected').val();
 		array.push(invited)
 		$("#friends option[value='" + invited + "']").remove();
-		if(array[array.length - 1] === undefined || invited == ''){
+		if(array[array.length - 1] === undefined){
 			array.pop();
 			$('select').hide();
 			$('.add-friend').hide();

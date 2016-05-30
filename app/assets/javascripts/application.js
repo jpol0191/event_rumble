@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function(){
+	$('.add-friend').click(function(){
+		// find a way to update value on the hidden field!
+		$('option').attr('value', $(group_fname).attr() + $('option').val())
+	})
+})

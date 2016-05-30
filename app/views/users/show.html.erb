@@ -27,11 +27,27 @@
 <div class="group-list">
 	<br>
 	<div class="form">
+	 <h2>invite friends</h2>
+	 <!-- drop down of list of friend to add in the group -->
+	 <!-- it has to be outside of the from  -->
+   <select name="user_id">
+    <%= @users.each do |user| %>
+      <option value="<%= user.fname %>"><%= user.fname %></option>
+    <% end %>
+	  </select>
+	  <!-- add friend in the hidden field -->
+	  <button class="add-friend">add</button>
 		<%= form_for @group do |f|%>
-		<%= f.text_field :name, placeholder: "name" %> 
-		<%= f.hidden_field :user_id, value: current_user.id %><br>
-		<%= f.submit value: "Create" %>
-	<% end %> 
+			<h2>name of your group</h2>
+			<%= f.text_field :name, placeholder: "name" %> 
+			<br>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<br>
+		  <br>
+		  <%= f.hidden_field :fname, value: current_user.fname %>
+		  <br>
+			<%= f.submit value: "Create" %>
+		<% end %> 
 	</div>
 	<br>
 	<% @groups.reverse.each do |group| %>

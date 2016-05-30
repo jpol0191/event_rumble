@@ -9,11 +9,12 @@ class UsersController < ApplicationController
       if @user.save
         redirect_to root_path
       else
-        #display errors
+        redirect_to sessions_path
       end
   end
   def show
      @user = User.find(params[:id])
+     @users = User.order("fname ASC").all
      @group=Group.new
      @groups = Group.where(user_id: params[:id])
   end

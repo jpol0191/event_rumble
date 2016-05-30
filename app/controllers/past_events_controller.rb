@@ -22,6 +22,6 @@ class PastEventsController < ApplicationController
 	private
 
 	def past_event_params
-		params.require(:past_event)require(:user_id, :name, :url, :location, :image)
+		params.require(:past_event).permit(:user_id, :name, :url, :location, :image)
 	end
 end

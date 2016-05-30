@@ -1,5 +1,9 @@
+
 Rails.application.routes.draw do
 
+  get 'rooms/show'
+
+  get 'users/index'
 
   root "users#index"
   resources :groups

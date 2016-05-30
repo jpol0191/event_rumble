@@ -18,9 +18,13 @@
 
 $(document).ready(function(){
 	$('h3').html($('#group_fname').val());
+		var array =[]
 	$('.add-friend').click(function(){
 		// find a way to update value on the hidden field!
-		$('#group_fname').val($('#group_fname').val() +'<br>'+ $('select').closest('select').find('option:selected').val());
+		var invited =  $('select').closest('select').find('option:selected').val();
+		array.push(invited)
+		$('#group_fname').val($('#group_fname').val() +'<br>'+ invited);
+		console.log(array)
 		$('h3').html($('#group_fname').val())
 	})
 })

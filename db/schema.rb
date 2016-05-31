@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -13,8 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-
-ActiveRecord::Schema.define(version: 20160531190535) do
+ActiveRecord::Schema.define(version: 20160531193550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,7 +114,10 @@ ActiveRecord::Schema.define(version: 20160531190535) do
     t.string   "oauth_expires_at"
     t.string   "provider"
     t.string   "fullname"
+<<<<<<< 64c893650954932e54f49c98953467526d9cedd1
     t.boolean  "is_online"
+=======
+>>>>>>> Adding facebook columns
   end
 
   add_foreign_key "friends", "users"
@@ -129,4 +130,3 @@ ActiveRecord::Schema.define(version: 20160531190535) do
   add_foreign_key "power_ups", "users"
   add_foreign_key "rooms", "users"
 end
-

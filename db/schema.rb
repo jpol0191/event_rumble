@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -14,8 +13,12 @@
 
 
 
+
 ActiveRecord::Schema.define(version: 20160531190535) do
 
+
+
+ActiveRecord::Schema.define(version: 20160531193550) do
 
 
 
@@ -125,12 +128,17 @@ ActiveRecord::Schema.define(version: 20160531190535) do
     t.string   "image"
     t.string   "oauth_token"
     t.string   "oauth_expires_at"
+<<<<<<< 9da3ee2673c86f7947e31b1b937c5ee87831915a
 <<<<<<< 6d0d9318a04e167e76755f07bbc9cbe845b47e78
     t.string   "provider"
     t.string   "fullname"
     t.boolean  "is_online"
 =======
 >>>>>>> Adding facebook columns to user model
+=======
+    t.string   "provider"
+    t.string   "fullname"
+>>>>>>> Adding facebook columns
   end
 
   add_foreign_key "friends", "users"
@@ -143,4 +151,3 @@ ActiveRecord::Schema.define(version: 20160531190535) do
   add_foreign_key "power_ups", "users"
   add_foreign_key "rooms", "users"
 end
-

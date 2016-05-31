@@ -91,14 +91,6 @@ ActiveRecord::Schema.define(version: 20160531202251) do
 
   add_index "power_ups", ["user_id"], name: "index_power_ups_on_user_id", using: :btree
 
-  create_table "rooms", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "rooms", ["user_id"], name: "index_rooms_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
@@ -108,7 +100,6 @@ ActiveRecord::Schema.define(version: 20160531202251) do
     t.string   "lname"
     t.string   "fname"
     t.string   "uid"
-    t.string   "channel"
     t.string   "image"
     t.string   "oauth_token"
     t.string   "oauth_expires_at"
@@ -124,5 +115,4 @@ ActiveRecord::Schema.define(version: 20160531202251) do
   add_foreign_key "past_event_users", "past_events"
   add_foreign_key "past_events", "users"
   add_foreign_key "power_ups", "users"
-  add_foreign_key "rooms", "users"
 end

@@ -10,7 +10,17 @@
 <h1> Or </h1>
 <br>
 <h1>Facebook</h1>
-<%= link_to "Sign Up",  sessions_path %> 
+<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+
+<% if current_user %>
+	Provider: <%= current_user.provider %><br>
+	Uid: <%= current_user.uid %><br>
+	Email: <%= current_user.email %><br>
+	Name: <%= current_user.name %><br>
+	Image: <%= current_user.image %><br>
+	Token: <%= current_user.oauth_token %><br>
+	Token expires: <%= current_user.oauth_expires_at %><br>
+	<% end %>
 
 
 

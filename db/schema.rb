@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -11,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531155655) do
+ActiveRecord::Schema.define(version: 20160531190250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,15 +92,27 @@ ActiveRecord::Schema.define(version: 20160531155655) do
 
   add_index "power_ups", ["user_id"], name: "index_power_ups_on_user_id", using: :btree
 
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "rooms", ["user_id"], name: "index_rooms_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "phone"
     t.string   "lname"
     t.string   "fname"
     t.integer  "uid"
+    t.string   "channel"
+    t.string   "image"
+    t.string   "oauth_token"
+    t.string   "oauth_expires_at"
   end
 
   add_foreign_key "friends", "users"
@@ -110,4 +123,6 @@ ActiveRecord::Schema.define(version: 20160531155655) do
   add_foreign_key "past_event_users", "past_events"
   add_foreign_key "past_events", "users"
   add_foreign_key "power_ups", "users"
+  add_foreign_key "rooms", "users"
 end
+

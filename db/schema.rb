@@ -14,7 +14,9 @@
 
 
 
-ActiveRecord::Schema.define(version: 20160531190250) do
+ActiveRecord::Schema.define(version: 20160531190535) do
+
+
 
 
 

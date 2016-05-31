@@ -24,6 +24,8 @@ $(document).ready(function(){
 		$('.form').show();
 		$('.create-group').hide();
 	});
+
+
 	$('.add-friend').click(function(){
 		// find a way to update value on the hidden field!
 		var invited =  $('select').closest('select').find('option:selected').val();
@@ -41,7 +43,7 @@ $(document).ready(function(){
 
 	$('select').click(function(){
 		$('.add-friend').show();
-	})
+	});
 
 	$('.clear-friend').click(function(){
 		array =[];
@@ -49,6 +51,8 @@ $(document).ready(function(){
 			$('select').show();
 			$('.add-friend').show();
 			$("#friends option").show();
-	})
+	});
+
+	
 
 })

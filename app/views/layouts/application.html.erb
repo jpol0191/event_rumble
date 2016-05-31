@@ -7,7 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="echo" data-uri="<%= request.host %>:<%= request.port %>/websocket"></div>
 
+<script type="text/javascript">
+	dispatcher = new WebSocketRails($('#echo').data('uri'));
+	dispatcher.on_open = function(){
+		console.log("Connection Established");
+	};
+	notification_channel = 
+</script>
 
 <%= yield %>
 

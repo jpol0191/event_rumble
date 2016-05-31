@@ -28,6 +28,7 @@ $(document).ready(function(){
 		// find a way to update value on the hidden field!
 		var invited =  $('select').closest('select').find('option:selected').val();
 		array.push(invited)
+		$('#group_fname').val($('#group_fname').val()+','+invited);
 		$("#friends option[value='" + invited + "']").hide();
 		if(array[array.length - 1] === array[array.length - 2]){
 			array.pop();
@@ -35,9 +36,7 @@ $(document).ready(function(){
 			$('.add-friend').hide();
 		}
 		$('h3').html(array.join(', '))
-		console.log(array)
-		// set value to be the current selected value
-    arrayGlobal = jQuery("option:selected");
+		
 	});
 
 	$('.clear-friend').click(function(){
@@ -47,4 +46,5 @@ $(document).ready(function(){
 			$('.add-friend').show();
 			$("#friends option").show();
 	})
+	
 })

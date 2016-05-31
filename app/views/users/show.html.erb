@@ -53,6 +53,9 @@
 		<% end %> 
 	</div>
 	<br>
+	<div id="test"></div>
+
+	<br>
 	<% @groups.reverse.each do |group| %>
 		<div class="job-list">
 			<%= link_to group.name,  group_path(group) %>

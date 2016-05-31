@@ -23,9 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: event_rumble_test
+  database: event_rumble_development
   host: localhost
-  username: Juan Pol 
+  username: Jay 
   password: postgres 
 
   timeout: 5000

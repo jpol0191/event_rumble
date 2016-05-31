@@ -1,7 +1,13 @@
 
 Rails.application.routes.draw do
 
+
   get 'rooms/show'
+
+  resources :users, only: :show do 
+    resources :rooms, only: [:show]
+  end
+
 
   get 'users/index'
 
@@ -11,6 +17,7 @@ Rails.application.routes.draw do
     patch 'facebook', :on => :collection
   end
   resources :users
+
   # Sessions Paths 
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'

@@ -5,14 +5,15 @@ class UsersController < ApplicationController
   end
 
   def create
-
     @user = User.new(user_params)
-      if @user.save
-        redirect_to root_path
-      else
-        redirect_to sessions_path
-      end
+    if @user.save
+      @user.update(channel: "channel_#{@user.id}")
+      redirect_to :back
+    else
+      redirect_to :back
+    end
   end
+
   def show
      @user = User.find(params[:id])
      @users = User.order("fname ASC").all
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-  	params.require(:user).permit(:email,:password,:phone,:fname,:lname)
+  	params.require(:user).permit(:email,:password,:phone,:fname,:lname,:channel)
   end
 end
+

@@ -1,2 +1,23 @@
 <h1>Rooms#show</h1>
 <p>Find me in app/views/rooms/show.html.erb</p>
+
+<ul id="chat">
+	
+</ul>
+<script type="text/javascript">
+	dispatcher = new WebSocketRails('localhost:3000/websocket')
+	channel = dispatcher.subscribe("<%= @user.fname%>" + "_room_" + <%= @room%>)
+	console.log("Subscribed to room: <%= @user.fname%>" + "_room:" + <%= @room%>)
+	dispatcher.on_open = function(){
+		console.log("Connection established!")
+	};
+
+	dispatcher.bind('connection_closed', function() {
+	  console.log('connection is closed');
+	});
+
+	channel.bind('new_message', function(data){
+		console.log(data)
+	});
+
+</script>

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
 
   root "users#index"
-
+  resources :groups
+  resources :sessions
   resources :users
   # Sessions Paths 
   post 'login' => 'sessions#create'

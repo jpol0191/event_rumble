@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+img{
+	width: 200px;
+	height: 200px;
+	margin-top: 30px;
+	margin-left: 110px;
+	position: relative;
+}
+
+.infos{
+	margin-left: 70px;
+	padding-right: 40px;
+}
+
+.container{
+	margin-left: 10px;
+	margin-top: 35px;
+	border: solid;
+	position: absolute;
+}
+
+.create-group, .group-list{
+	margin-left: 750px;
+}

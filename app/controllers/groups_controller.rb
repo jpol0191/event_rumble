@@ -3,7 +3,8 @@ class GroupsController < ApplicationController
 	def create 
 		@group=Group.new(group_params)
 		if @group.save
-			#continue one to next page
+			@members = params[:group][:fname].split(',')
+			redirect_to :back
 		else 
 			#handle errors
 		end 
@@ -22,6 +23,6 @@ class GroupsController < ApplicationController
 	private 
 
 	def group_params
-		params.require(:group).permit(:user_id, :name)
+		params.require(:group).permit(:users, :user_id, :name)
 	end
 end

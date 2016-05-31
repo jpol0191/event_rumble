@@ -14,3 +14,37 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function(){
+		var array =[]
+		var i = 0;
+	$('.form').hide();
+	$('.create-group').click(function(){
+		$('.form').show();
+		$('.create-group').hide();
+	});
+	$('.add-friend').click(function(){
+		// find a way to update value on the hidden field!
+		var invited =  $('select').closest('select').find('option:selected').val();
+		array.push(invited)
+		$('#group_fname').val($('#group_fname').val()+','+invited);
+		$("#friends option[value='" + invited + "']").hide();
+		if(array[array.length - 1] === array[array.length - 2]){
+			array.pop();
+			$('select').hide();
+			$('.add-friend').hide();
+		}
+		$('h3').html(array.join(', '))
+		
+	});
+
+	$('.clear-friend').click(function(){
+		array =[];
+		$('h3').html('')
+			$('select').show();
+			$('.add-friend').show();
+			$("#friends option").show();
+	})
+	
+})

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529184204) do
+ActiveRecord::Schema.define(version: 20160531155655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,9 +36,11 @@ ActiveRecord::Schema.define(version: 20160529184204) do
     t.integer  "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   add_index "group_members", ["group_id"], name: "index_group_members_on_group_id", using: :btree
+  add_index "group_members", ["user_id"], name: "index_group_members_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.integer  "user_id"
@@ -89,6 +91,14 @@ ActiveRecord::Schema.define(version: 20160529184204) do
 
   add_index "power_ups", ["user_id"], name: "index_power_ups_on_user_id", using: :btree
 
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "rooms", ["user_id"], name: "index_rooms_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
@@ -98,13 +108,16 @@ ActiveRecord::Schema.define(version: 20160529184204) do
     t.string   "lname"
     t.string   "fname"
     t.integer  "uid"
+    t.string   "channel"
   end
 
   add_foreign_key "friends", "users"
   add_foreign_key "group_members", "groups"
+  add_foreign_key "group_members", "users"
   add_foreign_key "groups", "users"
   add_foreign_key "keywords", "categories"
   add_foreign_key "past_event_users", "past_events"
   add_foreign_key "past_events", "users"
   add_foreign_key "power_ups", "users"
+  add_foreign_key "rooms", "users"
 end

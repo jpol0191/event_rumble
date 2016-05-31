@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20160531190535) do
     t.string   "phone"
     t.string   "lname"
     t.string   "fname"
-    t.integer  "uid"
+    t.string   "uid"
     t.string   "channel"
     t.string   "image"
     t.string   "oauth_token"

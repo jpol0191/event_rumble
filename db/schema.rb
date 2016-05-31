@@ -12,13 +12,8 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
+ActiveRecord::Schema.define(version: 20160531202251) do
 
-
-ActiveRecord::Schema.define(version: 20160531190535) do
-
-
-
-ActiveRecord::Schema.define(version: 20160531193550) do
 
 
 
@@ -119,11 +114,15 @@ ActiveRecord::Schema.define(version: 20160531193550) do
     t.string   "phone"
     t.string   "lname"
     t.string   "fname"
+<<<<<<< 9555ce1c32c063cee8394d850926c827e2d824e8
 <<<<<<< 6d0d9318a04e167e76755f07bbc9cbe845b47e78
     t.string   "uid"
 =======
     t.integer  "uid"
 >>>>>>> Adding facebook columns to user model
+=======
+    t.string   "uid"
+>>>>>>> Changing uid to string
     t.string   "channel"
     t.string   "image"
     t.string   "oauth_token"

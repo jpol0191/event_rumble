@@ -29,15 +29,19 @@ $(document).ready(function(){
 		var invited =  $('select').closest('select').find('option:selected').val();
 		array.push(invited)
 		$('#group_fname').val($('#group_fname').val()+','+invited);
+		$('.add-friend').hide();
 		$("#friends option[value='" + invited + "']").hide();
 		if(array[array.length - 1] === array[array.length - 2]){
 			array.pop();
 			$('select').hide();
 			$('.add-friend').hide();
 		}
-		$('h3').html(array.join(', '))
-		
+		$('h3').html(array.join(', '));
 	});
+
+	$('select').click(function(){
+		$('.add-friend').show();
+	})
 
 	$('.clear-friend').click(function(){
 		array =[];
@@ -46,5 +50,5 @@ $(document).ready(function(){
 			$('.add-friend').show();
 			$("#friends option").show();
 	})
-	
+
 })

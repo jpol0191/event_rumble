@@ -5,7 +5,6 @@ gem 'faraday', '~> 0.9.2'
 gem 'omniauth-facebook'
 gem 'pry'
 gem 'websocket-rails'
-
 gem 'faye-websocket', '0.10.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

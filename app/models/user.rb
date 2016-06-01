@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
       user.lname			= name[1]
       user.password 	= "password"
       user.password_confirmation	=	"password"
-	    user.save
+	    user.save!
 	  end
 	end
 	#=============================================	

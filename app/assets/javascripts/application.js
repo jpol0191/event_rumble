@@ -54,7 +54,6 @@ $(document).ready(function(){
 	// 		$("#friends option").show();
 	// });
 
-  autofilled();
 	
 	$("#tags input").on({
     focusout : function() {
@@ -62,7 +61,7 @@ $(document).ready(function(){
       if(txt) $("<span/>", {text:txt.toLowerCase(), insertBefore:this});
       this.value = "";
       array.push($('span').last().html());
-      // console.log(array);
+      console.log(array);
     },
     keyup : function(ev) {
       // if: comma|enter (delimit more keyCodes with | pipe)
@@ -71,15 +70,13 @@ $(document).ready(function(){
   });
   $('#tags').on('click', 'span', function() {
     if(confirm("Remove "+ $(this).text() +"?")) $(this).remove(); 
+    for(var i=0; i<array.length; i++){
+    	if($(this).text() == array[i]){
+    		array.pop(i);
+    		array.pop(i);
+    		console.log(array)
+    	}
+    }
   });
 
-	function autofilled(){
-	  $('.autofill').hide();
-	  var availableTags = $('.autofill:last').val();
-	  console.log($('.autofill:last').attributes())
-	  console.log(availableTags)
-	    $( "#tag" ).autocomplete({
-	      source: availableTags
-	    });
-	}
 })

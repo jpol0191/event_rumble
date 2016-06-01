@@ -12,7 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 20160531202251) do
+ActiveRecord::Schema.define(version: 20160601004629) do
 
 
 
@@ -98,14 +98,6 @@ ActiveRecord::Schema.define(version: 20160531202251) do
 
   add_index "power_ups", ["user_id"], name: "index_power_ups_on_user_id", using: :btree
 
-  create_table "rooms", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "rooms", ["user_id"], name: "index_rooms_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
@@ -137,7 +129,11 @@ ActiveRecord::Schema.define(version: 20160531202251) do
 =======
     t.string   "provider"
     t.string   "fullname"
+<<<<<<< 4407d88dc6b70a9acab8279c1c8eba0c3d29d6d0
 >>>>>>> Adding facebook columns
+=======
+    t.boolean  "is_online"
+>>>>>>> Adding is_online column to user model
   end
 
   add_foreign_key "friends", "users"
@@ -148,5 +144,4 @@ ActiveRecord::Schema.define(version: 20160531202251) do
   add_foreign_key "past_event_users", "past_events"
   add_foreign_key "past_events", "users"
   add_foreign_key "power_ups", "users"
-  add_foreign_key "rooms", "users"
 end

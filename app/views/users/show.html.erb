@@ -1,62 +1,63 @@
-
-<h4>User signed in</h4>
-<%= current_user.email %>
-<%= button_to("Log out", logout_path, method: :delete)%>
-<h4>Facebook sign out</h4>
-<%= link_to "Sign out", signout_path, id: "sign_out" %>
-
-<!-- profile picture -->
-<div class="container-profile">
-<br>
-	<img class="img-test" src="http://i.dailymail.co.uk/i/pix/2016/04/13/00/331D901800000578-3536787-image-a-11_1460503122350.jpg">
-
-	<!-- user informations -->
-	<div class="infos">
-		<h2>E-mail: <%= @user.email %> </h1> 
-		<h2>First name: <%= @user.fname %> </h1> 
-		<h2>Last name: <%= @user.lname %> </h1> 
-		<h2>Phone number: <%= @user.phone %> </h1> 
-		<h2>Password: *******</h1> 
-	</div>
-</div>
-
-<!-- user information update -->
-<div class="info-update">
+<div class="container">
+    <div class="span3 well">
+        <img src="http://www.funnyjunksite.com/pictures/wp-content/uploads/2015/08/Funny-Avatar-Photo.jpg" name="aboutme" width="140" height="140" class="img-circle">
+        <div class="infos">
+        	<br>
+					E-mail: <%= @user.email %> 
+					<br>
+					First name: <%= @user.fname %>  
+					<br>
+					Last name: <%= @user.lname %>  
+					<br>
+					Phone number: <%= @user.phone %> 
+					<br>
+					Password: *******
+				</div>
+				<!-- user information update -->
+				<div class="info-update">
 	
+				</div>
+    </div>
 </div>
-<!-- button to create a group -->
-<button class="create-group">Create a group</button>
-<div class="group-list">
-	<br>
-	<div class="form">
-	 <h2>invite friends</h2>
-	 <!-- drop down of list of friend to add in the group -->
-	 <!-- it has to be outside of the from  -->
-		<div id="tags">
-		  <input id="tag" type="text" value="" placeholder="Add a friend" />
-		</div>
-		<br>
 
-    	<%@autofill_name = [] %>
-    <% @users.each do |user| %>
-      <%@autofill_name.push(user.fname) %>
-      <h6 class="autofill" value="<%= @autofill_name %>" ><%= user.fname %></h6>
-    <% end %>
-    <br>
-		<%= form_for @group do |f|%>
-			<h2>name of your group</h2>
-			<%= f.text_field :name, placeholder: "name" %> 
-			<br>
-			<%= f.hidden_field :user_id, value: current_user.id %>
-			<br>
-		  <br>
-		  <%= f.hidden_field :fname, value: current_user.fname %>
-		  <br>
-			<%= f.submit value: "Create", :class => 'submit-group' %>
-		<% end %> 
-	</div>
-	<br>
-	<div id="test"></div>
+<!-- button to create a group -->
+<button class="create-group btn btn-lg btn-primary btn-block">Create a group</button>
+<div class="container3">
+    <div class="row">
+        <div class='col-md-3'></div>
+        <div class="col-md-6">
+            <div class="login-box well">
+              <legend>My new rumble group</legend>
+              <div class="form-group">
+                  <label>Add friends:</label>
+                  <br>
+                  <div id="tags">
+										<input id="tag" type="text" value="" placeholder="Add a friend" />
+									</div>
+									  <% @users.each do |user| %>
+      								<h6 class="autofill" value="" ><%= user.fname %></h6>
+   									<% end %>
+									<br>
+              </div>
+              <div class="form-group">
+                  <label >Group name</label>
+                  <%= form_for @group do |f|%>										
+                  	<%= f.text_field :name, placeholder: "name", :class => 'form-control' %> 
+										<br>
+										<%= f.hidden_field :user_id, value: current_user.id %>
+										<br>
+									  <br>
+									  <%= f.hidden_field :fname, value: current_user.fname %>
+									  <br>
+              			<%= f.submit value: "Create", :class => 'submit-group btn btn-default btn-login-submit btn-block m-t-md' %>
+									<% end %> 
+              </div>            
+            </div>
+        </div>
+        <div class='col-md-3'></div>
+    </div>
+</div>
+<div class="group-list">
 
 	<br>
 	<% @groups.reverse.each do |group| %>

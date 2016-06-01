@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -11,14 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160601004629) do
-
-
-
-
-
-
+ActiveRecord::Schema.define(version: 20160531202251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,34 +100,12 @@ ActiveRecord::Schema.define(version: 20160601004629) do
     t.string   "phone"
     t.string   "lname"
     t.string   "fname"
-<<<<<<< 9555ce1c32c063cee8394d850926c827e2d824e8
-<<<<<<< 6d0d9318a04e167e76755f07bbc9cbe845b47e78
     t.string   "uid"
-=======
-    t.integer  "uid"
->>>>>>> Adding facebook columns to user model
-=======
-    t.string   "uid"
->>>>>>> Changing uid to string
-    t.string   "channel"
     t.string   "image"
     t.string   "oauth_token"
     t.string   "oauth_expires_at"
-<<<<<<< 9da3ee2673c86f7947e31b1b937c5ee87831915a
-<<<<<<< 6d0d9318a04e167e76755f07bbc9cbe845b47e78
     t.string   "provider"
     t.string   "fullname"
-    t.boolean  "is_online"
-=======
->>>>>>> Adding facebook columns to user model
-=======
-    t.string   "provider"
-    t.string   "fullname"
-<<<<<<< 4407d88dc6b70a9acab8279c1c8eba0c3d29d6d0
->>>>>>> Adding facebook columns
-=======
-    t.boolean  "is_online"
->>>>>>> Adding is_online column to user model
   end
 
   add_foreign_key "friends", "users"
@@ -145,3 +117,4 @@ ActiveRecord::Schema.define(version: 20160601004629) do
   add_foreign_key "past_events", "users"
   add_foreign_key "power_ups", "users"
 end
+

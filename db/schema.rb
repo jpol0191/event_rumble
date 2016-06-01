@@ -106,14 +106,7 @@ ActiveRecord::Schema.define(version: 20160601004629) do
     t.string   "oauth_expires_at"
     t.string   "provider"
     t.string   "fullname"
-<<<<<<< 64ee36491cb2cb0d550bc1326ebb78a0f87041eb
-<<<<<<< 64c893650954932e54f49c98953467526d9cedd1
     t.boolean  "is_online"
-=======
->>>>>>> Adding facebook columns
-=======
-    t.boolean  "is_online"
->>>>>>> Adding is_online column to user model
   end
 
   add_foreign_key "friends", "users"

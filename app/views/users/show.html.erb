@@ -1,6 +1,16 @@
+<div class="group-list">
+	  <select class ="btn btn-lg btn-primary btn-block">
+	  	<% @groups.reverse.each do |group| %>
+				<div class="job-list">
+					<option><%= link_to group.name,  group_path(group) %></option>
+					<br> 
+				</div>
+			<% end %>
+	  </select>
+</div>
 <div class="container">
     <div class="span3 well">
-        <img src="http://www.funnyjunksite.com/pictures/wp-content/uploads/2015/08/Funny-Avatar-Photo.jpg" name="aboutme" width="140" height="140" class="img-circle">
+        <img src="http://superiorplatform.com/pictures-of/faces/angry/04a-angry_baby.jpg" name="aboutme" width="140" height="140" class="img-circle">
         <div class="infos">
         	<br>
 					E-mail: <%= @user.email %> 
@@ -56,16 +66,6 @@
         </div>
         <div class='col-md-3'></div>
     </div>
-</div>
-<div class="group-list">
-
-	<br>
-	<% @groups.reverse.each do |group| %>
-		<div class="job-list">
-			<%= link_to group.name,  group_path(group) %>
-			<br> 
-		</div>
-	<% end %>
 </div>
 
 

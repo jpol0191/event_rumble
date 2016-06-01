@@ -158,11 +158,11 @@
     margin-left: 500px;
 }
 .group-list{
-	margin-left: 580px;
+    margin-bottom: 10px;
 }
 
-.create-group{
-    width: 1145px;
+.create-group, .group-list{
+    width: 1150px;
     height: 40px;
     margin-left: 65px;
 }
@@ -201,5 +201,5 @@
 }
 
 .container3{
-    margin-top: 10px;
+    margin-top: 90px;
 }

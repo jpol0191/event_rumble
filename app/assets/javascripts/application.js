@@ -26,7 +26,9 @@ $(document).ready(function(){
 	$('.container3').hide();
 
 	$('.create-group').click(function(){
-		$('.container3').show();
+		$('.container').fadeOut(200);
+		$('.group-list').fadeOut(200);
+		$('.container3').fadeIn(600);
 		$('.create-group').hide();
 	});
 	$("#tags input").on({

@@ -58,7 +58,7 @@
 										<%= f.hidden_field :user_id, value: current_user.id %>
 										<br>
 									  <br>
-									  <%= f.hidden_field :fname, value: current_user.fname %>
+									  <%= f.hidden_field :fname, value: current_user.fname, id: "group-creation-names" %>
 									  <br>
               			<%= f.submit value: "Create", :class => 'submit-group btn btn-default btn-login-submit btn-block m-t-md' %>
 									<% end %> 
@@ -68,3 +68,5 @@
         <div class='col-md-3'></div>
     </div>
 </div>
+
+<%= button_to("Test", new_group_path, method: :get) %>

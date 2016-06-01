@@ -1,17 +1,26 @@
 class GroupsController < ApplicationController
-
+	def show
+		@group = Group.find(params[:id])
+		@groupmembers = GroupMember.where(group_id: @group.id) || []
+		@members = []
+		@groupmembers.each do |g|
+			@members << User.find(g.user_id)
+		end
+	end
 	def create 
+		binding.pry
 		@group=Group.new(group_params)
 		if @group.save
 			@members = params[:group][:fname].split(',')
 			@members.each do |member|
-				@invited = User.where(fname: member).first
-				mem = GroupMember.new(group_id: 1, user_id: @invited.id, friend_id: 1 )
-				mem.save
+				if @invited = User.where(fname: member).first
+					mem = GroupMember.new(group_id: @group.id, user_id: @invited.id, friend_id: 1 )
+					mem.save
+				end
 			end
-			redirect_to :back
+			redirect_to group_path(@group.id)
 		else 
-			#handle errors
+			redirect_to 
 		end 
 	end
 

@@ -1,0 +1,8 @@
+This is the group show page
+
+<h2>Group id: <%= @group.id %></h2>
+<h2>Group Name: <%= @group.name %></h2>
+
+<% @members.each do |member|%>
+	<h4><%=member.fname%></h4>
+<% end %>

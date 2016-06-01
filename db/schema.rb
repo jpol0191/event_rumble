@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -12,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531202251) do
+
+ActiveRecord::Schema.define(version: 20160601004629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160531202251) do
     t.string   "oauth_expires_at"
     t.string   "provider"
     t.string   "fullname"
+    t.boolean  "is_online"
   end
 
   add_foreign_key "friends", "users"

@@ -2,6 +2,8 @@
 <h4>User signed in</h4>
 <%= current_user.email %>
 <%= button_to("Log out", logout_path, method: :delete)%>
+<h4>Facebook sign out</h4>
+<%= link_to "Sign out", signout_path, id: "sign_out" %>
 
 <!-- profile picture -->
 <div class="container-profile">

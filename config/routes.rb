@@ -3,11 +3,17 @@ Rails.application.routes.draw do
 
   root "users#index"
   resources :groups
-  resources :sessions
+  resources :sessions do
+    patch 'facebook', :on => :collection
+  end
   resources :users
   # Sessions Paths 
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  # Facebook Paths
+  get 'auth/:provider/callback' => 'sessions#facebook'
+  get 'auth/failure' => '/'
+  get 'signout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

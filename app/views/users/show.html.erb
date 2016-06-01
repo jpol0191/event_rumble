@@ -4,9 +4,9 @@
 <%= button_to("Log out", logout_path, method: :delete)%>
 
 <!-- profile picture -->
-<div class="container">
+<div class="container-profile">
 <br>
-	<img src="http://i.dailymail.co.uk/i/pix/2016/04/13/00/331D901800000578-3536787-image-a-11_1460503122350.jpg">
+	<img class="img-test" src="http://i.dailymail.co.uk/i/pix/2016/04/13/00/331D901800000578-3536787-image-a-11_1460503122350.jpg">
 
 	<!-- user informations -->
 	<div class="infos">
@@ -30,17 +30,12 @@
 	 <h2>invite friends</h2>
 	 <!-- drop down of list of friend to add in the group -->
 	 <!-- it has to be outside of the from  -->
-   <select name="friends" id="friends">
-    <%= @users.each do |user| %>
-      <option value="<%= user.fname %>"><%= user.fname %></option>
-    <% end %>
-	  </select>
-	  <!-- add friend in the hidden field -->
-	  <button class="add-friend">add</button>
-	  <!-- clear friends invited -->
-	  <button class="clear-friend">clear</button>
+		<div id="tags">
+		  <input type="text" value="" placeholder="Add a tag" />
+		</div>
+		<br>
 		<%= form_for @group do |f|%>
-			<h3></h3>
+			<h3 class="invited-friends"></h3>
 			<h2>name of your group</h2>
 			<%= f.text_field :name, placeholder: "name" %> 
 			<br>

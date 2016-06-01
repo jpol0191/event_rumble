@@ -1,12 +1,24 @@
-<!-- Signup form -->
-<h3>Sign up</h3>
-<%= form_for @user do |f|%>
-	<%= f.email_field :email, placeholder: "Email" %> 
-	<%= f.email_field :email_confirmation, placeholder: "Email confirmation" %>
-	<%= f.text_field :fname, placeholder: "First Name" %> 
-	<%= f.text_field :lname, placeholder: "Last Name" %> 
-	<%= f.password_field :password, placeholder: "Password" %>
-	<%= f.password_field :password_confirmation , placeholder: "Re-Type Password" %>
-	<%= f.telephone_field :phone %>
-	<%= f.submit value: "Sign up" %>
-<% end %> 
+<div class="container">
+    <div class="card card-container">
+      <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+      <p id="profile-name" class="profile-name-card"></p>
+      <div class="form-signin">
+         <span id="reauth-email" class="reauth-email"></span>
+					<!-- Signup form -->
+					<h3>Sign up</h3>
+					<%= form_for @user do |f|%>
+						<%= f.email_field :email, type: "email", id: "inputEmail", class: "form-control", placeholder: "Email address" %> 
+						<%= f.email_field :email_confirmation, type: "email", id: "inputEmail2", class: "form-control", placeholder: "Email address" %>
+						<%= f.text_field :fname, placeholder: "First Name", class: "fname" %> 
+						<%= f.text_field :lname, placeholder: "Last Name", class: "lname" %> 
+						<%= f.password_field :password, type: "password", id: "inputPassword", class: "form-control", placeholder: "Password" %>
+						<%= f.password_field :password, type: "password", id: "inputPassword", class: "form-control", placeholder: "Password" %>
+						<%= f.telephone_field :phone, class: "phone", placeholder: "phone number" %>
+						<br>
+						<br>
+						<%= f.submit value: "Sign up", class: "btn btn-lg btn-primary btn-block btn-signin" %>
+					<% end %> 
+			</div>
+    </div>
+</div>
+

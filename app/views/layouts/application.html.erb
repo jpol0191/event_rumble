@@ -8,6 +8,9 @@
 </head>
 <body>
 <div id="echo" data-uri="<%= request.host %>:<%= request.port %>/websocket"></div>
+
+<%= render 'layouts/friends' %>
+
 <% if current_user %>
 	<script type="text/javascript">
 		console.log("page load")

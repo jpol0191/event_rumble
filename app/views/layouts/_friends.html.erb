@@ -1,8 +1,10 @@
 <div>
 	<ul>
+		<li>test</li>
 		<% if current_user %>
 			<% current_user.friends.each do |friend|%>
-
+				<%friend = User.find(friend.id)%>
+				<li> <%= friend.fname%> <span><%= friend.is_online.to_s %> </span></li>
 			<% end %>
 		<% end %>
 	</ul>

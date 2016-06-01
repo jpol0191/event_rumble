@@ -34,10 +34,13 @@ $(document).ready(function(){
 	});
 	$("#tags input").on({
     focusout : function() {
+      txtArry = []
       var txt = this.value.replace(/[^a-z0-9\+\-\.\#]/ig,''); // allowed characters
       if(txt) $("<span/>", {text:txt.toLowerCase(), insertBefore:this});
+      txtArry.push(txt)
       this.value = "";
       array.push($('span').last().html());
+      $('#group-creation-names').attr('value', $('#group-creation-names').attr('value') + "," + txtArry.join(',')) 
       // console.log(array);
     },
     keyup : function(ev) {

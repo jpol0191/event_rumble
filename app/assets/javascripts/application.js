@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -17,34 +18,51 @@
 
 
 $(document).ready(function(){
-		var array =[]
-		var i = 0;
-	$('.form').hide();
+	//array of ivited friends
+	$('.autofill').hide();
+	var array =[];
+	//array for autofill
+	var availableTags = []
+	var i = 0;
+	$('.container3').hide();
+
 	$('.create-group').click(function(){
-		$('.form').show();
+		$('.container').fadeOut(200);
+		$('.group-list').fadeOut(200);
+		$('.container3').fadeIn(600);
 		$('.create-group').hide();
 	});
-	$('.add-friend').click(function(){
-		// find a way to update value on the hidden field!
-		var invited =  $('select').closest('select').find('option:selected').val();
-		array.push(invited)
-		$('#group_fname').val($('#group_fname').val()+','+invited);
-		$("#friends option[value='" + invited + "']").hide();
-		if(array[array.length - 1] === array[array.length - 2]){
-			array.pop();
-			$('select').hide();
-			$('.add-friend').hide();
-		}
-		$('h3').html(array.join(', '))
-		
-	});
+	$("#tags input").on({
+    focusout : function() {
+      var txt = this.value.replace(/[^a-z0-9\+\-\.\#]/ig,''); // allowed characters
+      if(txt) $("<span/>", {text:txt.toLowerCase(), insertBefore:this});
+      this.value = "";
+      array.push($('span').last().html());
+      // console.log(array);
+    },
+    keyup : function(ev) {
+      // if: comma|enter (delimit more keyCodes with | pipe)
+      if(/(188|13)/.test(ev.which)) $(this).focusout(); 
+    }
+  });
+  $('#tags').on('click', 'span', function() {
+    if(confirm("Remove "+ $(this).text() +"?")) $(this).remove(); 
+    for(var i=0; i<array.length; i++){
+    	if($(this).text() == array[i]){
+    		array.pop(i);
+    		array.pop(i);
+    		// console.log(array)
+    	}
+    }
+  });
 
-	$('.clear-friend').click(function(){
-		array =[];
-		$('h3').html('')
-			$('select').show();
-			$('.add-friend').show();
-			$("#friends option").show();
-	})
-	
+  $(".autofill").each(function() {
+  	availableTags.push($(this).html());
+  });
+  console.log(availableTags)
+  $( "#tag" ).autocomplete({
+      source: availableTags
+    });
+
 })
+

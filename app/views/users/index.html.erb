@@ -1,26 +1,22 @@
 
 <!-- Sign in form -->
-<h3>Sign in</h3>
-<%= form_for(:session, url: login_path) do |f| %>
-	<%= f.email_field :email , placeholder: "Email" %>
-	<%= f.password_field :password, placeholder: "Password" %>
-	<%= f.submit value: "Sign in" %>
-<% end 	%>
-
-<h1> Or </h1>
-<br>
-<h1>Facebook</h1>
-<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-
-<% if current_user %>
-	Provider: <%= current_user.provider %><br>
-	Uid: <%= current_user.uid %><br>
-	Email: <%= current_user.email %><br>
-	Name: <%= current_user.fullname %><br>
-	Image: <%= current_user.image %><br>
-	Token: <%= current_user.oauth_token %><br>
-	Token expires: <%= current_user.oauth_expires_at %><br>
-	<% end %>
-
-
-
+<div class="container">
+    <div class="card card-container">
+      <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+      <p id="profile-name" class="profile-name-card"></p>
+      <div class="form-signin">
+         <span id="reauth-email" class="reauth-email"></span>
+         <!-- Sign in form -->
+					<h3>Sign in</h3>
+					<%= form_for(:session, url: login_path) do |f| %>
+						<%= f.email_field :email , type: "email", id: "inputEmail", class: "form-control", placeholder: "Email address" %>
+						<%= f.password_field :password, type: "password", id: "inputPassword", class: "form-control", placeholder: "Password" %>
+						<%= f.submit value: "Sign in", class: "btn btn-lg btn-primary btn-block btn-signin" %>
+					<% end 	%>
+					<h3> <center>Or</center> </h3>
+					<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+					<br>
+					<%= link_to "Sign Up",  sessions_path %>
+			</div>
+    </div>
+</div>

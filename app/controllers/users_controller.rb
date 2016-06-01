@@ -19,6 +19,7 @@ class UsersController < ApplicationController
      @group=Group.new
      @groups = Group.where(user_id: params[:id])
      @invitedlist = params[:fname]
+     @group_member = GroupMember.new
   end
 
   def destroy

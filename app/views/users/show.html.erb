@@ -31,11 +31,17 @@
 	 <!-- drop down of list of friend to add in the group -->
 	 <!-- it has to be outside of the from  -->
 		<div id="tags">
-		  <input type="text" value="" placeholder="Add a tag" />
+		  <input id="tag" type="text" value="" placeholder="Add a friend" />
 		</div>
 		<br>
+
+    	<%@autofill_name = [] %>
+    <% @users.each do |user| %>
+      <%@autofill_name.push(user.fname) %>
+      <h6 class="autofill" value="<%= @autofill_name %>" ><%= user.fname %></h6>
+    <% end %>
+    <br>
 		<%= form_for @group do |f|%>
-			<h3 class="invited-friends"></h3>
 			<h2>name of your group</h2>
 			<%= f.text_field :name, placeholder: "name" %> 
 			<br>
@@ -58,3 +64,5 @@
 		</div>
 	<% end %>
 </div>
+
+

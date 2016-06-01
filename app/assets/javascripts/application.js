@@ -17,6 +17,7 @@
 
 
 $(document).ready(function(){
+		$('.autofill').hide();
 		var array =[]
 		var i = 0;
 	$('.form').hide();
@@ -53,13 +54,15 @@ $(document).ready(function(){
 	// 		$("#friends option").show();
 	// });
 
+  autofilled();
+	
 	$("#tags input").on({
     focusout : function() {
       var txt = this.value.replace(/[^a-z0-9\+\-\.\#]/ig,''); // allowed characters
       if(txt) $("<span/>", {text:txt.toLowerCase(), insertBefore:this});
       this.value = "";
       array.push($('span').last().html());
-      console.log(array);
+      // console.log(array);
     },
     keyup : function(ev) {
       // if: comma|enter (delimit more keyCodes with | pipe)
@@ -70,5 +73,13 @@ $(document).ready(function(){
     if(confirm("Remove "+ $(this).text() +"?")) $(this).remove(); 
   });
 
-
+	function autofilled(){
+	  $('.autofill').hide();
+	  var availableTags = $('.autofill:last').val();
+	  console.log($('.autofill:last').attributes())
+	  console.log(availableTags)
+	    $( "#tag" ).autocomplete({
+	      source: availableTags
+	    });
+	}
 })

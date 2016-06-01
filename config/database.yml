@@ -23,10 +23,10 @@ default: &default
 
 development:
   <<: *default
-  database: event_rumble
+  database: event_rumble_development
   host: localhost
-  username: Jay 
-  password: postgrespass 
+  username: Juan Pol
+  password: postgres
 
   timeout: 5000
   # The specified database role being used to connect to postgres.

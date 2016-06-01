@@ -10,11 +10,20 @@
 <div id="echo" data-uri="<%= request.host %>:<%= request.port %>/websocket"></div>
 <% if current_user %>
 	<script type="text/javascript">
+		console.log("page load")
 		dispatcher = new WebSocketRails($('#echo').data('uri'));
 		dispatcher.on_open = function(){
 			console.log("Connection Established");
 		};
 		notification_channel = dispatcher.subscribe("<%= current_user.fname%>_<%=current_user.id%>")
+		console.log("subscribed to: <%= current_user.fname%>_<%=current_user.id%>")
+		notification_channel.bind('new_message', function(data){
+			console.log(data)
+		});
+
+		dispatcher.bind('server_message',function(data){
+			console.log("server says " + data)
+		})
 	</script>
 <% end %>
 

@@ -7,6 +7,15 @@ This is the group show page
 	<h4><%=member.fname%></h4>
 <% end %>
 
+<ul id="cat-select">
+	<% categories_list.each do |cat|%>
+		<li class="category" value="<%= cat %>">
+			<div class="category-select-indicator"></div>
+				<p> <%= cat %></p>
+		</li>
+	<% end %>
+</ul>
+
 <p>API Form</p>
 <%= select(:category,:selected, options_for_select(categories_list.collect{|loc| [ loc , loc] }), promt: "Category")%>
 <%= select(:date,:selected, options_for_select(date_options.collect{|loc| [ loc , loc] }), promt: "Category")%>

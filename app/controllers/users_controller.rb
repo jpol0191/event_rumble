@@ -15,11 +15,12 @@ class UsersController < ApplicationController
   end
   def show
      @user = User.find(params[:id])
-     @users = User.order("fname ASC").all
+     @friend =Friend.where(:user_id => current_user.id)
      @group=Group.new
      @groups = Group.where(user_id: params[:id])
      @invitedlist = params[:fname]
      @group_member = GroupMember.new
+        @friends = Friend.where(:user_id => current_user.id, :friend_id => params[:id]).first
   end
 
   def destroy

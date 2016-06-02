@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   root "users#index"
+  resources :friends
   resources :groups
   resources :sessions do
     patch 'facebook', :on => :collection

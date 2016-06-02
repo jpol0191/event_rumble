@@ -1,13 +1,20 @@
 class FriendsController < ApplicationController
-
+	def index
+		@users = User.order("fname ASC").all
+	end
+	
 	def create 
-		@friend=Friend.new(friend_params)
+		@follow = Follower.new(user_id: current_user.id, boat_id: params[:boat_id])
 
-		if @friend.save
-			# continue like normal
-		else
-			# error handling 
-		end
+    respond_to do |format|
+      if @follow.save
+        format.html { redirect_to :back, notice: 'follow was successfully created.' }
+        format.json { render :show, status: :created, location: @follow }
+      else
+        format.html { render :new }
+        format.json { render json: @follow.errors, status: :unprocessable_entity }
+      end
+    end
 	end
 
 	def update

@@ -1,6 +1,7 @@
 
 <div class="group-list">
-	  <select class ="btn btn-lg btn-primary btn-block">
+	  <select onfocus='this.size=10;' onblur='this.size=1;' 
+        onchange='this.size=1; this.blur();' class ="btn btn-lg btn-primary btn-block">
 	  	<% @groups.reverse.each do |group| %>
 				<div class="job-list">
 					<option><%= link_to group.name,  group_path(group) %></option>
@@ -30,9 +31,12 @@
 				</div>
     </div>
 </div>
-
+		<% if @user.id == session[:user_id] %>
+			<button class="create-group btn btn-lg btn-primary btn-block">Create a group</button>
+		<% else %> 
+			<%= button_to 'Add friend', {controller: "friendss", action: "create", user_id: params[:id]}, data: { confirm: 'are you sure?' } %>
+		<% end %>
 <!-- button to create a group -->
-<button class="create-group btn btn-lg btn-primary btn-block">Create a group</button>
 <div class="container3">
     <div class="row">
         <div class='col-md-3'></div>
@@ -60,13 +64,11 @@
 									  <br>
 									  <%= f.hidden_field :fname, value: current_user.fname, id: "group-creation-names" %>
 									  <br>
-              			<%= f.submit value: "Create", :class => 'submit-group btn btn-default btn-login-submit btn-block m-t-md' %>
-									<% end %> 
+	              			<%= f.submit value: "Create", :class => 'submit-group btn btn-default btn-login-submit btn-block m-t-md' %>
+	              		<% end %>
               </div>            
             </div>
         </div>
-        <div class='col-md-3'></div>
     </div>
 </div>
 
-<%= button_to("Test", new_group_path, method: :get) %>

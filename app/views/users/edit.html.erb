@@ -1,0 +1,44 @@
+<div class="row">
+        <div class='col-md-3'></div>
+        <div class="col-md-6">
+					<div class="login-box well">
+					<img src="<%= current_user.image + '?type=large' %>" name="aboutme" width="140" height="140" class="img-circle" id="editimage">
+					<legend>Edit your info:</legend>
+						<div class="form-group">
+						<%= form_for @user do |f| %>
+					    	<br>
+					      <%= f.label "First name: " %>
+					      <br>
+					      <%= f.text_field :fname %>
+					      <br>
+					      <%= f.label "Last name: " %>
+					      <br>
+					      <%= f.text_field :lname %>
+					      <br>
+					      <%= f.label "E-mail: " %>
+					      <br>
+					      <%= f.email_field :email %>
+					      <br>
+					      <%= f.label "Phone number: " %>
+					      <br>
+					      <%= f.text_field :phone %>
+					      <br>
+					      <%= f.label "Password: " %>
+					      <br>
+					      <%= f.password_field :password %>
+					      <br>
+					      <%= f.label "Re-type Password: " %>
+					      <br>
+					      <%= f.password_field :password_confirmation %>
+					      <br>
+					      <br>
+					      <%= f.submit "Update" %>
+					    <% end %>
+						</div>
+						<legend>Delete your account:</legend>
+						<div class="form-group">
+							<%= button_to("Delete", user_path(current_user.id), method: :delete, data: {confirm: "Your account will be DELETED, ok?"}) %>
+						</div>
+					</div>
+				</div>
+			</div>

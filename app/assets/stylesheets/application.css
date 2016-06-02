@@ -153,9 +153,6 @@
 	position: absolute;
 }
 
-.img-circle, .infos{
-    margin-left: 500px;
-}
 .group-list{
   margin-left: 200px;
 }
@@ -239,4 +236,12 @@
     .dropdown.dropdown-lg .dropdown-menu {
         min-width: 500px;
     }
+}
+
+#editimage {
+    margin: 0 35%;
+}
+
+#showimage {
+    margin: 0 40%;
 }

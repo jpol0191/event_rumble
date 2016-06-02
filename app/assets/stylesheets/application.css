@@ -139,7 +139,6 @@
 	height: 200px;
 	margin-top: 30px;
 	margin-left: 110px;
-	position: relative;
 }
 
 .infos{
@@ -158,13 +157,13 @@
     margin-left: 500px;
 }
 .group-list{
-    margin-bottom: 10px;
+  margin-left: 200px;
 }
 
 .create-group, .group-list{
-    width: 1150px;
-    height: 40px;
-    margin-left: 65px;
+    width: 170px;
+    height: 45px;
+    margin-left: 600px;
 }
 
 /*friends tag*/
@@ -202,4 +201,42 @@
 
 .container3{
     margin-top: 90px;
+}
+
+/*search*/
+.input-group-btn .btn-group {
+    display: flex !important;
+}
+.btn-group .btn {
+    border-radius: 0;
+    margin-left: -1px;
+}
+.btn-group .btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.btn-group .form-horizontal .btn[type="submit"] {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+.form-group .form-control:last-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 500px;
+    }
 }

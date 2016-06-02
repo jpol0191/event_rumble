@@ -19,9 +19,12 @@
 $(document).ready(function(){
 	//array of ivited friends
 	$('.autofill').hide();
+	$(".autofill-users").hide();
+	$(".users").hide();
 	var array =[];
 	//array for autofill
-	var availableTags = []
+	var availableTags = [];
+	var availableTagsUsers = [];
 	var i = 0;
 	$('.container3').hide();
 
@@ -37,7 +40,7 @@ $(document).ready(function(){
       if(txt) $("<span/>", {text:txt.toLowerCase(), insertBefore:this});
       this.value = "";
       array.push($('span').last().html());
-      // console.log(array);
+      console.log(array);
     },
     keyup : function(ev) {
       // if: comma|enter (delimit more keyCodes with | pipe)
@@ -58,9 +61,28 @@ $(document).ready(function(){
   $(".autofill").each(function() {
   	availableTags.push($(this).html());
   });
-  console.log(availableTags)
+  // console.log(availableTags)
   $( "#tag" ).autocomplete({
       source: availableTags
-    });
+   });
+
+  $(".autofill-users").each(function() {
+  	availableTagsUsers.push($(this).html());
+  });
+
+  $('.search').autocomplete({
+  		source: availableTagsUsers
+  });
+
+  $('.search-button').click(function(){
+  	$(".users").each(function(i, user) {
+  		// console.log(i)
+  		// console.log(user)
+  		if ($('.search').val() === $(user).attr('id')){
+  			// console.log("Match!")
+  			$('.person').html($(user).show());
+  		}
+  	});
+  });
 
 })

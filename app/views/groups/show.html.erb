@@ -6,3 +6,10 @@ This is the group show page
 <% @members.each do |member|%>
 	<h4><%=member.fname%></h4>
 <% end %>
+
+<p>API Form</p>
+<%= select(:category,:selected, options_for_select(categories_list.collect{|loc| [ loc , loc] }), promt: "Category")%>
+<%= select(:date,:selected, options_for_select(date_options.collect{|loc| [ loc , loc] }), promt: "Category")%>
+<button id="event-search">Search</button>
+
+<ul id="event-results"></ul>

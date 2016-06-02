@@ -3,33 +3,34 @@ class FriendsController < ApplicationController
 		@users = User.order("fname ASC").all
 	end
 	
-	def create 
-		@follow = Follower.new(user_id: current_user.id, boat_id: params[:boat_id])
+	 before_action :set_friend, only: [:destroy]
+  
+	def create
+    @friend = Friend.new(user_id: current_user.id, friend_id: params[:myfriend_id])
 
     respond_to do |format|
-      if @follow.save
-        format.html { redirect_to :back, notice: 'follow was successfully created.' }
-        format.json { render :show, status: :created, location: @follow }
+      if @friend.save
+        format.html { redirect_to :back, notice: 'Adding was successfull' }
+        format.json { render :show, status: :created, location: @friend }
       else
-        format.html { render :new }
-        format.json { render json: @follow.errors, status: :unprocessable_entity }
+        format.html { render :friends }
+        format.json { render json: @friend.errors, status: :unprocessable_entity }
       end
     end
-	end
+  end 
 
-	def update
-		@friend=Friend.find(params[:id])
-		@friend.update(friend_params)
-	end
+  def destroy
+    @friend.destroy
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Unfriended' }
+      format.json { head :no_content }
+    end
+  end
 
-	def destroy 
-		@friend=Friend.find(params[:id])
-		@friend.destroy
-	end
-	
-	private
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_friend
+      @friend = Friend.where( friend_id: params[:id]).first
+    end
 
-	def friend_params
-		params.require(:friend).permit(:user_id, :friend_id)
-	end	
 end

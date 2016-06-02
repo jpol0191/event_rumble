@@ -15,7 +15,11 @@
 		<% if @user.id == session[:user_id] %>
 			<button class="create-group btn btn-lg btn-primary btn-block">Create a group</button>
 		<% else %> 
-			<%= button_to 'Add friend', {controller: "friendss", action: "create", user_id: params[:id]}, data: { confirm: 'are you sure?' } %>
+			<% if !@friends %>
+			  <%= button_to 'Add friend', {controller: "friends", action: "create", myfriend_id: params[:id]}, data: { confirm: 'are you sure you want to be friend with that person', class: "create-group btn btn-lg btn-primary btn-block"} %>
+			<% else %>
+			  <%= button_to 'Unfriend', friend_path(params[:id]), method: :delete, class: "create-group btn btn-lg btn-primary btn-block" %>
+			<% end %>
 		<% end %>
 <!-- button to create a group -->
 <div class="container3">
@@ -30,8 +34,9 @@
                   <div id="tags">
 										<input id="tag" type="text" value="" placeholder="Add a friend" />
 									</div>
-									  <% @users.each do |user| %>
-      								<h6 class="autofill" value="" ><%= user.fname %></h6>
+									  <% @friend.each do |friend| %>
+									  	<% friend = User.find(friend.friend_id) %>
+      								<h6 class="autofill" value="" ><%= friend.email %></h6>
    									<% end %>
 									<br>
               </div>

@@ -69,3 +69,5 @@ $(document).ready(function(){
 
 })
 
+//= require websocket_rails/main
+

@@ -117,3 +117,4 @@ ActiveRecord::Schema.define(version: 20160601004629) do
   add_foreign_key "past_events", "users"
   add_foreign_key "power_ups", "users"
 end
+

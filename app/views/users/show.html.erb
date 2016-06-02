@@ -1,3 +1,4 @@
+
 <div class="group-list">
 	  <select onfocus='this.size=10;' onblur='this.size=1;' 
         onchange='this.size=1; this.blur();' class ="btn btn-lg btn-primary btn-block">
@@ -10,8 +11,8 @@
 	  </select>
 </div>
 <div class="container">
-  <div class="span3 well">
-       <img src="http://superiorplatform.com/pictures-of/faces/angry/04a-angry_baby.jpg" name="aboutme" width="140" height="140" class="img-circle">
+    <div class="span3 well">
+        <img src="<%= current_user.image + '?type=large' %>" name="aboutme" width="140" height="140" class="img-circle">
         <div class="infos">
         	<br>
 					E-mail: <%= @user.email %> 
@@ -61,7 +62,7 @@
 										<%= f.hidden_field :user_id, value: current_user.id %>
 										<br>
 									  <br>
-									  <%= f.hidden_field :fname, value: current_user.fname %>
+									  <%= f.hidden_field :fname, value: current_user.fname, id: "group-creation-names" %>
 									  <br>
 	              			<%= f.submit value: "Create", :class => 'submit-group btn btn-default btn-login-submit btn-block m-t-md' %>
 	              		<% end %>
@@ -70,5 +71,4 @@
         </div>
     </div>
 </div>
-
 

@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -36,11 +37,15 @@ $(document).ready(function(){
 	});
 	$("#tags input").on({
     focusout : function() {
+      txtArry = []
       var txt = this.value.replace(/[^a-z0-9\+\-\.\#]/ig,''); // allowed characters
       if(txt) $("<span/>", {text:txt.toLowerCase(), insertBefore:this});
+      txtArry.push(txt)
       this.value = "";
       array.push($('span').last().html());
-      console.log(array);
+
+      $('#group-creation-names').attr('value', $('#group-creation-names').attr('value') + "," + txtArry.join(',')) 
+      // console.log(array);
     },
     keyup : function(ev) {
       // if: comma|enter (delimit more keyCodes with | pipe)
@@ -86,3 +91,4 @@ $(document).ready(function(){
   });
 
 })
+

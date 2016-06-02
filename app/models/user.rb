@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
 	# =========== Password validations =========== 
 	has_secure_password
 	validates_confirmation_of :password
-	validates_presence_of :password
 	# ============================================
 
 	# ============ Email validations =============
@@ -44,3 +43,4 @@ class User < ActiveRecord::Base
 	#=============================================	
 
 end
+

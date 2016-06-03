@@ -1,5 +1,5 @@
 This is the group show page
-
+<h1><%= request.original_url %></h1>
 <h2>Group id: <%= @group.id %></h2>
 <h2>Group Name: <%= @group.name %></h2>
 <!-- Super secret div to pass group id to js -->
@@ -123,11 +123,16 @@ This is the group show page
 
 	room_channel.bind('voting_activity', function(data){
 		removeMyVote();
-		console.log("3")
+		
 		var elem = document.getElementById(data.user_id.toString())
 		if (elem){
 			elem.parentNode.removeChild(elem);
 		}
 		$('#'+ data.vote).children('.voting-box').append('<img id="'+ data.user_id +'" src="https://www.glendaleaz.com/clerk/images/Vote_002.jpg">');
+	});
+
+	$(window).unload(function(){
+		dispatcher.subscribe("<%= @group.name%>_<%= @group.id%>");
+		dispatcher.disconnect();
 	});
 </script>

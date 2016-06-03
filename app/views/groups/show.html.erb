@@ -21,8 +21,6 @@ This is the group show page
 			<% end %>
 		</ul>
 
-		
-		
 		<%= select(:date,:selected, options_for_select(date_options.collect{|loc| [ loc , loc] }), promt: "Date")%>
 		<button id="event-search">Search</button>
 	</div>

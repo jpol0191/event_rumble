@@ -2,23 +2,140 @@ This is the group show page
 
 <h2>Group id: <%= @group.id %></h2>
 <h2>Group Name: <%= @group.name %></h2>
-
+<!-- Super secret div to pass group id to js -->
+<input id="group-info" type="hidden" value="<%= @group.id%>">
 <% @members.each do |member|%>
 	<h4><%=member.fname%></h4>
 <% end %>
 
-<ul id="cat-select">
-	<% categories_list.each do |cat|%>
-		<li class="category" value="<%= cat %>">
-			<div class="category-select-indicator"></div>
-				<p> <%= cat %></p>
-		</li>
-	<% end %>
-</ul>
+<!-- Stage one should only be visible by the group owner -->
+<% if current_user.id == @group.user_id%>
+	<div id="voting-stage-one">
+		<!-- this is the category selector list -->
+		<ul id="cat-select">
+			<% categories_list.each do |cat|%>
+				<li class="category" value="<%= cat %>">
+					<div class="category-select-indicator"></div>
+						<p> <%= cat %></p>
+				</li>
+			<% end %>
+		</ul>
 
-<p>API Form</p>
-<%= select(:category,:selected, options_for_select(categories_list.collect{|loc| [ loc , loc] }), promt: "Category")%>
-<%= select(:date,:selected, options_for_select(date_options.collect{|loc| [ loc , loc] }), promt: "Category")%>
-<button id="event-search">Search</button>
+		
+		
+		<%= select(:date,:selected, options_for_select(date_options.collect{|loc| [ loc , loc] }), promt: "Date")%>
+		<button id="event-search">Search</button>
+	</div>
+<% end %>
 
-<ul id="event-results"></ul>
+<!-- User put in their votes in this stage -->
+<div id="voting-stage-two">
+
+
+	<!-- Events show up in this list -->
+	<ul id="event-results"></ul>
+</div>
+
+
+
+
+
+
+<!-- Page specific javascript -->
+<script type="text/javascript">
+	// Used to open Websocket with server
+	dispatcher = new WebSocketRails($('#echo').data('uri'));
+	dispatcher.on_open = function(){ 
+ 		console.log("Connection Established"); 
+	}; 
+	// All users that see this page are on the same channel
+	room_channel = dispatcher.subscribe("<%= @group.name%>_<%= @group.id%>")
+	console.log("subscribed to: <%= @group.name%>_<%= @group.id%>")
+
+	// Listen to server api response
+	dispatcher.bind('api_response',function(data){
+		console.log(data)
+		// send the room the message from the server 
+		room_channel.trigger('channel_api_response', data);
+	})
+
+	// non-room members voting starts at this point
+	room_channel.bind('channel_api_response', function(data){
+		events = data.events.event
+		for(var i =0; i < events.length; i++){
+			var elem = $('#event-results')
+			elem.append('<li id="event-' + i +'">'+'<h4>'+ events[i].title+ '</h4>' +'</li>');
+
+			elem.children().last().append('<div class="event-results-indicator"></div>');
+
+			// Show image if valid url exist
+			elem.children().last().append('<img src="'+ (events[i].image ? events[i].image.medium.url : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/200px-No_image_available.svg.png" ) +'">');
+
+			// Show description, if description is invald display "No description"
+			elem.children().last().append('<p>'+ (events[i].description ? events[i].description: "No description" ) + '</p>');
+
+			elem.children().last().append('<div class="voting-box"></div>')
+		}
+
+		// Adding a listener to all newly added events
+		$('.event-results-indicator').on('click', function(e){
+			$('.event-results-indicator').parent().removeClass('active');
+			$('.event-results-indicator').removeClass('active-indicator');
+			$('.event-results-indicator').css('background','grey');
+
+			$(this).parent().addClass('active');
+			$(this).addClass('active-indicator');
+			$(this).css('background','green');
+
+			//Websocket code to update all users in the room
+			room_channel.trigger('voting_activity', {user_id: "<%= current_user.id%>", vote: $(this).parent().attr('id') })
+		});
+
+		$('#voting-stage-two').append('<button id="finalize-button">Finalize Voting</button>');
+
+		// Adding a click listen to newly created button
+		$('#finalize-button').on('click', function(){
+			var votes = {};
+			var winner = null;
+			var winnerName;
+			$('.voting-box').children().each(function(){
+				console.log(this.parentNode.parentNode.getAttribute('id'))
+
+				if(votes[this.parentNode.parentNode.getAttribute('id')]){
+					votes[this.parentNode.parentNode.getAttribute('id')] += 1 
+				}else{
+					votes[this.parentNode.parentNode.getAttribute('id')] = 1
+				}
+			});
+
+
+			for(var key in votes){
+				if(winner){
+					if(winner < votes[key]){
+						winner = votes[key]
+						winnerName = key
+					}
+				}else{
+					winner = votes[key]
+					winnerName = key
+				}
+			}
+
+			console.log(winnerName)
+		});
+	})
+
+
+	room_channel.bind('voting_activity', function(data){
+		removeMyVote();
+		console.log("3")
+		var elem = document.getElementById(data.user_id.toString())
+		if (elem){
+			elem.parentNode.removeChild(elem);
+		}
+		$('#'+ data.vote).children('.voting-box').append('<img id="'+ data.user_id +'" src="https://www.glendaleaz.com/clerk/images/Vote_002.jpg">');
+	});
+
+
+
+</script>

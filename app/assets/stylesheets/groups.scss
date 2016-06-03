@@ -7,8 +7,15 @@ $unit : 10px;
 	background: grey;
 }
 
-#cat-select {
-	.active-indicator{
-		background: green;
-	};
-}
+
+.active-indicator{
+	background: green;
+};
+
+
+
+.event-results-indicator{
+	background: grey;
+	height: $unit * 2;
+	width: $unit * 2;
+};

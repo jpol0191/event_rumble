@@ -18,6 +18,10 @@
 </style>
 </head>
 <body>
+<!-- Used to pass information needed for websockets to js -->
+<div id="echo" data-uri="<%= request.host %>:<%= request.port %>/websocket"></div>
+
+
 <div class="bs-example">
     <nav role="navigation" class="navbar navbar-default">
         <!-- Brand and toggle get grouped for better mobile display -->

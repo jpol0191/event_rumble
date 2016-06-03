@@ -8,7 +8,6 @@ class GroupsController < ApplicationController
 		end
 	end
 	def create 
-		binding.pry
 		@group=Group.new(group_params)
 		if @group.save
 			@members = params[:group][:fname].split(',')
@@ -20,7 +19,7 @@ class GroupsController < ApplicationController
 			end
 			redirect_to group_path(@group.id)
 		else 
-			redirect_to 
+			redirect_to :back
 		end 
 	end
 

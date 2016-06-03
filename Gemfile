@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+
+
+gem 'json'
 # Web socket gems
 gem 'websocket-rails'
 gem 'faye-websocket', '0.10.0'

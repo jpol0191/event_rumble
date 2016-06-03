@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
   def show
      @user = User.find(params[:id])
+     @past_events = PastEvent.where(:user_id => @user)
      @friend =Friend.where(:user_id => current_user.id)
      @group=Group.new
      @groups = Group.where(user_id: params[:id])

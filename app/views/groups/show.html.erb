@@ -1,7 +1,7 @@
-This is the group show page
-
-<h2>Group id: <%= @group.id %></h2>
-<h2>Group Name: <%= @group.name %></h2>
+<div class="container">
+<div class="span12 well">
+<legend>Group id: <%= @group.id %></legend>
+<label>Group Name: <%= @group.name %></label>
 <!-- Super secret div to pass group id to js -->
 <input id="group-info" type="hidden" value="<%= @group.id%>">
 <% @members.each do |member|%>
@@ -131,3 +131,5 @@ This is the group show page
 		$('#'+ data.vote).children('.voting-box').append('<img id="'+ data.user_id +'" src="https://www.glendaleaz.com/clerk/images/Vote_002.jpg">');
 	});
 </script>
+</div>
+</div>

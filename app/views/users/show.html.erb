@@ -1,37 +1,57 @@
+<!-- user information update -->
 <div class="container">
-    <div class="span3 well">
+    <div class="col-xs-12 col-md-6 well">
 				<% if current_user.id == @user.id %>
 					<center><legend>Welcome <%= current_user.fname %></legend></center>
 				<% else %>
-				<center><legend>Welcome to <%= @user.fullname %>'s page</legend></center>
+					<center><legend>Welcome to <%= @user.fullname %>'s page</legend></center>
 				<% end %>
-        <img src="<%= @user.image + '?type=large' %>" name="aboutme" width="140" height="140" class="img-circle" id="showimage">
+				<div class="editimage">
+					<h1>
+						<img src="<%= @user.image + '?type=large' %>" name="aboutme" width="200" height="200" class="showimage">
+					</h1>
+				</div>
         <br>
+        <br>
+				<% if current_user.id == @user.id %>
+					<button class="create-group btn btn-lg btn-primary btn-block">RUMBLE!</button>
+				<% end %>
+    	<div id="showmiddle">
+    	<% if current_user.id != @user.id %>
 			<% if !@friends %>
-			  <%= button_to 'Add friend', {controller: "friends", action: "create", myfriend_id: params[:id]}, data: { confirm: 'Are you sure you want to be friend with this person?', class: "create-group btn btn-lg btn-primary btn-block"} %>
+				<div class="editimage">
+					<h1>
+			  		<%= button_to 'Add friend', {controller: "friends", action: "create", myfriend_id: params[:id]}, class: "friend btn btn-lg btn-primary" %>
+			  	</h1>
+			  </div>
 			<% else %>
-			  <%= button_to 'Unfriend', friend_path(params[:id]), method: :delete, class: "create-group btn btn-lg btn-primary btn-block" %>
+				<div class="editimage">
+					<h1>
+			  		<%= button_to 'Unfriend', friend_path(params[:id]), method: :delete, class: "friend btn btn-lg btn-primary" %>
+			  	</h1>
+			  </div>
 			<% end %>
+			<% end %>
+			</div>
     </div>
-</div>
-				<!-- user information update -->
-				<div class="container">
-				<div id="friendimage">
-				<center><label>Friends</label></center>
-					<br>
-					<% @buddy.each do |buddy| %>
-					<% x = buddy.friend_id %>
-					<% y = User.find(x) %>
-					<div id="friendi">
+<!-- user friends -->
+		<div class="col-xs-12 col-md-6 well">
+			<center><legend>Friends</legend></center>
+				<br>
+				<% @buddy.each do |buddy| %>
+				<% x = buddy.friend_id %>
+				<% y = User.find(x) %>
+				<div id="friendi">
 					<img src="<%= y.image %>" id="fimage">
 					<br>
 					<center><%= link_to("#{y.fname}", user_path(y.id), method: :get) %></center>
-					</div>
-					<% end %>
-					</div>
 				</div>
+				<% end %>
+				<center><legend>Past Events</legend></center>
+				<%= @past_events %>
+			</div>
+		</div>
 		<% if @user.id == session[:user_id] %>
-			<button class="create-group btn btn-lg btn-primary btn-block">RUMBLE!</button>
 <div class="container3">
     <div class="row">
         <div class='col-md-3'></div>

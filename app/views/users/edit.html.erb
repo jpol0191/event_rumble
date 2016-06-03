@@ -2,7 +2,9 @@
         <div class='col-md-3'></div>
         <div class="col-md-6">
 					<div class="login-box well">
-					<img src="<%= current_user.image + '?type=large' %>" name="aboutme" width="140" height="140" class="img-circle" id="editimage">
+					<div class="editimage">
+					<h1><img src="<%= current_user.image + '?type=large' %>" name="aboutme" width="200" height="200" class="showimage"></h1>
+					</div>
 					<legend>Edit your info:</legend>
 						<div class="form-group">
 						<%= form_for @user do |f| %>

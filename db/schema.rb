@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20160602162559) do
     t.string   "lname"
     t.string   "fname"
     t.string   "uid"
-    t.string   "channel"
     t.string   "image"
     t.string   "oauth_token"
     t.string   "oauth_expires_at"

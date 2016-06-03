@@ -137,8 +137,7 @@
 .img-circle{
 	width: 200px;
 	height: 200px;
-	margin-top: 30px;
-	margin-left: 110px;
+    margin: 0 auto;
 }
 
 .infos{
@@ -160,7 +159,12 @@
 .create-group, .group-list{
     width: 170px;
     height: 45px;
-    margin-left: 600px;
+    margin: 0 auto;
+}
+
+.friend {
+    width: 170px;
+    height: 45px;
 }
 
 /*friends tag*/
@@ -225,25 +229,12 @@
     border-bottom-left-radius: 4px;
 }
 
-@media screen and (min-width: 768px) {
-    #adv-search {
-        width: 500px;
-        margin: 0 auto;
-    }
-    .dropdown.dropdown-lg {
-        position: static !important;
-    }
-    .dropdown.dropdown-lg .dropdown-menu {
-        min-width: 500px;
-    }
+.editimage {
+    text-align: center;
 }
 
-#editimage {
-    margin: 0 35%;
-}
-
-#showimage {
-    margin: 0 40%;
+.showimage {
+    border-radius: 50%;
 }
 
 #friendimage{
@@ -258,4 +249,39 @@
 
 #friendi {
     float:left;
+}
+
+.col-md-2 {
+    width: 5px;
+}
+
+#cat-select li {
+    display: inline-block;
+    width: 100px;
+}
+
+#voting-stage-two img {
+    border-radius: 50%;
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.voting-box img {
+    border-radius: 50%;
+    max-height: 100px;
+    max-width: 100px;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 500px;
+    }
+
 }

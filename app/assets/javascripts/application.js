@@ -38,7 +38,7 @@ $(document).ready(function(){
 	$("#tags input").on({
     focusout : function() {
       txtArry = []
-      var txt = this.value.replace(/[^a-z0-9\+\-\.\#]/ig,''); // allowed characters
+      var txt = this.value.replace(/[^a-z0-9\+\-\.\#@]/ig,''); // allowed characters
       if(txt) $("<span/>", {text:txt.toLowerCase(), insertBefore:this});
       txtArry.push(txt)
       this.value = "";

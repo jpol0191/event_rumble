@@ -1,9 +1,9 @@
-This is the group show page
-<h1><%= request.original_url %></h1>
-<h2>Group id: <%= @group.id %></h2>
+
 <h2>Group Name: <%= @group.name %></h2>
+
 <!-- Super secret div to pass group id to js -->
 <input id="group-info" type="hidden" value="<%= @group.id%>">
+
 <% @members.each do |member|%>
 	<h4><%=member.fname%></h4>
 <% end %>

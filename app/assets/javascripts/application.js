@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
+//= require websocket_rails/main
 
 $(document).ready(function(){
 	//array of ivited friends
@@ -91,4 +91,6 @@ $(document).ready(function(){
   });
 
 })
+
+//= require websocket_rails/main
 

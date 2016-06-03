@@ -7,7 +7,9 @@ class GroupsController < ApplicationController
 			@members << User.find(g.user_id)
 		end
 	end
+
 	def create 
+		binding.pry
 		@group=Group.new(group_params)
 		if @group.save
 			@members = params[:group][:fname].split(',')

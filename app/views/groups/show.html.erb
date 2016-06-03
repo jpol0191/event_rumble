@@ -63,7 +63,7 @@
 		events = data.events.event
 		for(var i =0; i < events.length; i++){
 			var elem = $('#event-results')
-			elem.append('<li id="event-' + i +'">'+'<h4>'+ events[i].title+ '</h4>' +'</li>');
+			elem.append('<li id="event-' + i +'" class="span12 well">'+'<h4>'+ events[i].title+ '</h4>' +'</li>');
 
 			elem.children().last().append('<div class="event-results-indicator"></div>');
 
@@ -71,7 +71,7 @@
 			elem.children().last().append('<img src="'+ (events[i].image ? events[i].image.medium.url : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/200px-No_image_available.svg.png" ) +'">');
 
 			// Show description, if description is invald display "No description"
-			elem.children().last().append('<p>'+ (events[i].description ? events[i].description: "No description" ) + '</p>');
+			elem.children().last().append('<a href="'+ (events[i].url ? events[i].url: "No url" ) + '" target="_blank">More Info</a>');
 
 			elem.children().last().append('<div class="voting-box"></div>')
 		}

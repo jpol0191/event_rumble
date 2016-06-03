@@ -61,7 +61,7 @@
 										<%= f.hidden_field :user_id, value: current_user.id %>
 										<br>
 									  <br>
-									  <%= f.hidden_field :fname, value: current_user.fname, id: "group-creation-names" %>
+									  <%= f.hidden_field :fname, value: current_user.email, id: "group-creation-names" %>
 									  <br>
 	              			<%= f.submit value: "Create", :class => 'submit-group btn btn-default btn-login-submit btn-block m-t-md' %>
 	              		<% end %>
@@ -78,7 +78,7 @@
 
 	// Listen to invite messages from the server
 	dispatcher.bind('invite_message', function(data){
-		$('#invite-box').append('<form action="'+ data.url +'"><input type="submit" value="Join'+ data.room_name +'"></form>');
+		$('#invite-box').append('<form action="'+ data.url +'"><input type="submit" value="Join '+ data.room_name +'"></form>');
 	});
 
 	// Disconnect websocket on page unload

@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+	
 	def show
 		@group = Group.find(params[:id])
 		@groupmembers = GroupMember.where(group_id: @group.id) || []
@@ -9,6 +10,7 @@ class GroupsController < ApplicationController
 	end
 
 	def create 
+
 		@group=Group.new(group_params)
 		if @group.save
 			@members = params[:group][:fname].split(',')
@@ -18,6 +20,7 @@ class GroupsController < ApplicationController
 					mem.save
 				end
 			end
+			
 			redirect_to group_path(@group.id)
 		else 
 			redirect_to :back

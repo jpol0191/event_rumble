@@ -5,6 +5,9 @@
 				<% else %>
 				<center><legend>Welcome to <%= @user.fullname %>'s page</legend></center>
 				<% end %>
+				<div id="invite-box">
+					<!-- btn btn-lg btn-primary btn-block -->
+				</div>
         <img src="<%= @user.image + '?type=large' %>" name="aboutme" width="140" height="140" class="img-circle" id="showimage">
         <br>
 			<% if !@friends %>
@@ -68,3 +71,19 @@
     </div>
 </div>
 		<% end %>  
+
+<script type="text/javascript">
+	// Initialize the websocket 
+	dispatcher = new WebSocketRails($('#echo').data('uri'));
+
+	// Listen to invite messages from the server
+	dispatcher.bind('invite_message', function(data){
+		$('#invite-box').append('<form action="'+ data.url +'"><input type="submit" value="Join'+ data.room_name +'"></form>');
+	});
+
+	// Disconnect websocket on page unload
+	$(window).unload(function(){
+		dispatcher.subscribe("<%= @group.name%>_<%= @group.id%>");
+		dispatcher.disconnect();
+	});
+</script>

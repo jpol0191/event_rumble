@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
 		if @group.save
 			@members = params[:group][:fname].split(',')
 			@members.each do |member|
-				if @invited = User.where(fname: member).first
+				if @invited = User.where(email: member).first
 					mem = GroupMember.new(group_id: @group.id, user_id: @invited.id, friend_id: 1 )
 					mem.save
 				end

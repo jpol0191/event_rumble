@@ -21,8 +21,6 @@ This is the group show page
 			<% end %>
 		</ul>
 
-		
-		
 		<%= select(:date,:selected, options_for_select(date_options.collect{|loc| [ loc , loc] }), promt: "Date")%>
 		<button id="event-search">Search</button>
 	</div>
@@ -41,11 +39,13 @@ This is the group show page
 	// Used to open Websocket with server
 	dispatcher = new WebSocketRails($('#echo').data('uri'));
 	dispatcher.on_open = function(){ 
+
  		console.log("Connection Established"); 
+
+		// Send an invite to memebers
+		dispatcher.trigger('server_invite_all', { url: "<%= request.original_url %>", room_name: "<%= @group.name %>"})
 	}; 
 
-	// Send an invite to memebers
-	dispatcher.trigger('server_invite_all', { url: "<%= request.original_url %>" room_name: "<%= @group.name %>"})
 
 	// All users that see this page are on the same channel
 	room_channel = dispatcher.subscribe("<%= @group.name%>_<%= @group.id%>")

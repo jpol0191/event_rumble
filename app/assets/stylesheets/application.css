@@ -245,3 +245,17 @@
 #showimage {
     margin: 0 40%;
 }
+
+#friendimage{
+    width: 300px;
+}
+
+#fimage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+#friendi {
+    float:left;
+}

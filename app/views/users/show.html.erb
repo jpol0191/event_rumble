@@ -6,6 +6,9 @@
 				<% else %>
 					<center><legend>Welcome to <%= @user.fullname %>'s page</legend></center>
 				<% end %>
+				<div id="invite-box">
+					<!-- btn btn-lg btn-primary btn-block -->
+				</div>
 				<div class="editimage">
 					<h1>
 						<img src="<%= @user.image + '?type=large' %>" name="aboutme" width="200" height="200" class="showimage">
@@ -78,7 +81,7 @@
 										<%= f.hidden_field :user_id, value: current_user.id %>
 										<br>
 									  <br>
-									  <%= f.hidden_field :fname, value: current_user.fname, id: "group-creation-names" %>
+									  <%= f.hidden_field :fname, value: current_user.email, id: "group-creation-names" %>
 									  <br>
 	              			<%= f.submit value: "Create", :class => 'submit-group btn btn-default btn-login-submit btn-block m-t-md' %>
 	              		<% end %>
@@ -89,3 +92,18 @@
 </div>
 		<% end %>  
 
+<script type="text/javascript">
+	// Initialize the websocket 
+	dispatcher = new WebSocketRails($('#echo').data('uri'));
+
+	// Listen to invite messages from the server
+	dispatcher.bind('invite_message', function(data){
+		$('#invite-box').append('<form action="'+ data.url +'"><input type="submit" value="Join '+ data.room_name +'"></form>');
+	});
+
+	// Disconnect websocket on page unload
+	$(window).unload(function(){
+		dispatcher.subscribe("<%= @group.name%>_<%= @group.id%>");
+		dispatcher.disconnect();
+	});
+</script>

@@ -1,9 +1,12 @@
+
 <div class="container">
 <div class="span12 well">
 <legend>Group id: <%= @group.id %></legend>
 <label>Group Name: <%= @group.name %></label>
+
 <!-- Super secret div to pass group id to js -->
 <input id="group-info" type="hidden" value="<%= @group.id%>">
+
 <% @members.each do |member|%>
 	<h4><%=member.fname%></h4>
 <% end %>
@@ -21,8 +24,6 @@
 			<% end %>
 		</ul>
 
-		
-		
 		<%= select(:date,:selected, options_for_select(date_options.collect{|loc| [ loc , loc] }), promt: "Date")%>
 		<button id="event-search">Search</button>
 	</div>
@@ -41,8 +42,14 @@
 	// Used to open Websocket with server
 	dispatcher = new WebSocketRails($('#echo').data('uri'));
 	dispatcher.on_open = function(){ 
+
  		console.log("Connection Established"); 
+
+		// Send an invite to memebers
+		dispatcher.trigger('server_invite_all', { url: "<%= request.original_url %>", room_name: "<%= @group.name %>"})
 	}; 
+
+
 	// All users that see this page are on the same channel
 	room_channel = dispatcher.subscribe("<%= @group.name%>_<%= @group.id%>")
 	console.log("subscribed to: <%= @group.name%>_<%= @group.id%>")
@@ -50,7 +57,7 @@
 	// Listen to server api response
 	dispatcher.bind('api_response',function(data){
 		console.log(data)
-		// send the room the message from the server 
+		// Send the room the message from the server 
 		room_channel.trigger('channel_api_response', data);
 	})
 
@@ -59,7 +66,7 @@
 		events = data.events.event
 		for(var i =0; i < events.length; i++){
 			var elem = $('#event-results')
-			elem.append('<li id="event-' + i +'">'+'<h4>'+ events[i].title+ '</h4>' +'</li>');
+			elem.append('<li id="event-' + i +'" class="span12 well">'+'<h4>'+ events[i].title+ '</h4>' +'</li>');
 
 			elem.children().last().append('<div class="event-results-indicator"></div>');
 
@@ -67,7 +74,7 @@
 			elem.children().last().append('<img src="'+ (events[i].image ? events[i].image.medium.url : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/200px-No_image_available.svg.png" ) +'">');
 
 			// Show description, if description is invald display "No description"
-			elem.children().last().append('<p>'+ (events[i].description ? events[i].description: "No description" ) + '</p>');
+			elem.children().last().append('<a href="'+ (events[i].url ? events[i].url: "No url" ) + '" target="_blank">More Info</a>');
 
 			elem.children().last().append('<div class="voting-box"></div>')
 		}
@@ -123,13 +130,18 @@
 
 	room_channel.bind('voting_activity', function(data){
 		removeMyVote();
-		console.log("3")
+		
 		var elem = document.getElementById(data.user_id.toString())
 		if (elem){
 			elem.parentNode.removeChild(elem);
 		}
 		$('#'+ data.vote).children('.voting-box').append('<img id="'+ data.user_id +'" src="https://www.glendaleaz.com/clerk/images/Vote_002.jpg">');
 	});
+	$(window).unload(function(){
+		dispatcher.subscribe("<%= @group.name%>_<%= @group.id%>");
+		dispatcher.disconnect();
+	});
 </script>
 </div>
 </div>
+

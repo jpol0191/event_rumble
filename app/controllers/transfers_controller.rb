@@ -19,4 +19,8 @@ class TransfersController < WebsocketRails::BaseController
 		group.update(stage: "STAGE2")
 	end
 
+	# Invite all users 
+	def invite_all
+		broadcast_message :invite_message, message
+	end
 end

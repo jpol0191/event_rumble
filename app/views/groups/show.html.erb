@@ -43,6 +43,10 @@ This is the group show page
 	dispatcher.on_open = function(){ 
  		console.log("Connection Established"); 
 	}; 
+
+	// Send an invite to memebers
+	dispatcher.trigger('server_invite_all', { url: "<%= request.original_url %>" room_name: "<%= @group.name %>"})
+
 	// All users that see this page are on the same channel
 	room_channel = dispatcher.subscribe("<%= @group.name%>_<%= @group.id%>")
 	console.log("subscribed to: <%= @group.name%>_<%= @group.id%>")
@@ -50,7 +54,7 @@ This is the group show page
 	// Listen to server api response
 	dispatcher.bind('api_response',function(data){
 		console.log(data)
-		// send the room the message from the server 
+		// Send the room the message from the server 
 		room_channel.trigger('channel_api_response', data);
 	})
 

@@ -14,4 +14,6 @@ WebsocketRails::EventMap.describe do
 
   subscribe :room_message_api, :to => TransfersController, :with_method => :eventful_response
 
+  subscribe :server_invite_all, :to => TransfersController, :with_method => :invite_all
+
 end

@@ -8,12 +8,14 @@ class UsersController < ApplicationController
   end
 
   def create
-
+    if current_user
+      redirect_to user_path(current_user.id)
+    end
     @user = User.new(user_params)
     @user.image = "http://u.o0bc.com/avatars/no-user-image.gif"
       if @user.save
         session[:user_id] = @user.id
-        redirect_to user_path(@user.id)
+        redirect_to root_path
       else
         redirect_to sessions_path
       end
@@ -30,7 +32,8 @@ class UsersController < ApplicationController
      @groups = Group.where(user_id: params[:id])
      @invitedlist = params[:fname]
      @group_member = GroupMember.new
-        @friends = Friend.where(:user_id => current_user.id, :friend_id => params[:id]).first
+     @friends = Friend.where(:user_id => current_user.id, :friend_id => params[:id]).first
+     @buddy = Friend.where(:user_id => params[:id])
   end
 
   def destroy

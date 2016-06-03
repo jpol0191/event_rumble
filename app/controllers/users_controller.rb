@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.image = "http://u.o0bc.com/avatars/no-user-image.gif"
       if @user.save
-        redirect_to user_path(current_user.id)
+        session[:user_id] = @user.id
+        redirect_to user_path(@user.id)
       else
         redirect_to sessions_path
       end
